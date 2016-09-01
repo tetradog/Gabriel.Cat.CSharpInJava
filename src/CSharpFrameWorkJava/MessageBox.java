@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
  * @author pc
  */
 public class MessageBox {
+    //por testear...aun no provado!!
     public enum MessageBoxIcon
     {
         None,Error,Informacion,Pregunta,Alerta,
