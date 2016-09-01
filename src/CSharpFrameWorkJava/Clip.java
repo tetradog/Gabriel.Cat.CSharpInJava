@@ -5,8 +5,10 @@ import java.io.IOException;
  //sacado de https://suarezdeveloper.wordpress.com/2012/04/05/como-leerescribir-en-el-portapapeles-clipboard-con-java/#comment-1750
 public class Clip implements ClipboardOwner
 {
+    static Clip clip=new Clip();
+
     // M�todo que recupera una cadena del portapapeles.
-    public String getClipboard()
+    public  String getClipboard()
     {
         // Obtenemos el contenido del portapapeles del sistema.
         Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
@@ -43,5 +45,13 @@ public class Clip implements ClipboardOwner
      public void lostOwnership(Clipboard clipboard, Transferable contents)
     {
         // TODO Auto-generated method stub
+    }
+    public static String GetClip()
+    {
+        return clip.getClipboard();
+    }
+    public static void SetClip(String str)
+    {
+         clip.setClipboard(str);
     }
 }
