@@ -25,6 +25,41 @@ public class MessageBox {
     {
         None,Yes,No,Ok,Cancel
     }
+    
+    public static Component DefaultParentComponent=null;
+        public static MessageBoxResult ShowDialog(String contenido,MessageBoxButtons buttons,MessageBoxIcon icon)
+    {
+        return ShowDialog(DefaultParentComponent, "", contenido, buttons, icon);
+    }
+     
+    public static MessageBoxResult ShowDialog(String contenido,MessageBoxButtons buttons)
+    {
+      return  ShowDialog(DefaultParentComponent, "", contenido, buttons);
+    }
+    public static void ShowDialog(String contenido,MessageBoxIcon ico)
+    {
+        ShowDialog(DefaultParentComponent, "", contenido, ico);
+    }
+    public static void ShowDialog(String contenido)
+    {
+        ShowDialog(DefaultParentComponent, "", contenido);
+    }
+    public static void ShowDialog(String titulo,String contenido)
+    {
+        ShowDialog(DefaultParentComponent, titulo, contenido, MessageBoxIcon.None);
+    }
+    public static void ShowDialog(String titulo,String contenido,MessageBoxIcon ico)
+    {
+        ShowDialog(DefaultParentComponent, titulo, contenido,MessageBoxButtons.Ok, ico);
+    }
+    public static MessageBoxResult ShowDialog(String titulo,String contenido,MessageBoxButtons buttons)
+    {
+        return ShowDialog(DefaultParentComponent, titulo, contenido, buttons, MessageBoxIcon.None);
+    }
+    public static MessageBoxResult ShowDialog(String titulo,String contenido,MessageBoxButtons buttons,MessageBoxIcon ico)
+    {
+        return ShowDialog(DefaultParentComponent, titulo, contenido, buttons, ico);
+    }
     public static MessageBoxResult ShowDialog(Component parentComponent,String contenido,MessageBoxButtons buttons,MessageBoxIcon icon)
     {
         return ShowDialog(parentComponent, "", contenido, buttons, icon);
