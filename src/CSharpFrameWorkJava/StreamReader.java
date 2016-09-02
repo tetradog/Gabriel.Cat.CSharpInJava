@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package CSharpFrameWorkJava;
 
 import java.io.BufferedReader;
@@ -21,64 +20,62 @@ import java.util.logging.Logger;
  * @author Pingu
  */
 public class StreamReader {
-    BufferedReader buffer;
-    String ultimaLinea=null;
-      DataInputStream entrada;
-      File fitxer;
-      String nomFile;
-      boolean acabat=false;
-    public StreamReader(String path) throws FileNotFoundException 
-    {
-       fitxer=new File(path);
-       nomFile=fitxer.getPath();
-       acabat=false;
-       if(fitxer.exists())
-       {
-           FileInputStream fStream = null;
-     
-        fStream=new FileInputStream(path);
-        entrada = new DataInputStream(fStream);
-        buffer=new BufferedReader(new InputStreamReader(entrada));
-               try{
-                   ultimaLinea=buffer.readLine();
-               }catch(IOException e){ultimaLinea=null;acabat=true;}
-       }
-     
-    }
-       
-    
 
-       
-    
-    public boolean getExisteix()
-    {
+    BufferedReader buffer;
+    String ultimaLinea = null;
+    DataInputStream entrada;
+    File fitxer;
+    String nomFile;
+    boolean acabat = false;
+
+    public StreamReader(String path) throws FileNotFoundException {
+        fitxer = new File(path);
+        nomFile = fitxer.getPath();
+        acabat = false;
+        if (fitxer.exists()) {
+            FileInputStream fStream = null;
+
+            fStream = new FileInputStream(path);
+            entrada = new DataInputStream(fStream);
+            buffer = new BufferedReader(new InputStreamReader(entrada));
+            try {
+                ultimaLinea = buffer.readLine();
+            } catch (IOException e) {
+                ultimaLinea = null;
+                acabat = true;
+            }
+        }
+
+    }
+
+    public boolean getExisteix() {
         return fitxer.exists();
     }
-    public boolean EndOfStream()
-    {
-        return ultimaLinea==null;
+
+    public boolean EndOfStream() {
+        return ultimaLinea == null;
     }
-    public String getNameFile()
-    {
+
+    public String getNameFile() {
         return nomFile;
     }
-    public void Delete()
-    {
+
+    public void Delete() {
         fitxer.delete();
     }
-    public String ReadLine() throws IOException
-    {
-        String lineaVella=ultimaLinea;
-        if(!acabat)
-        {
-        ultimaLinea=buffer.readLine();
-        if(ultimaLinea==null)
-        {entrada.close();acabat=true;}
-               
+
+    public String ReadLine() throws IOException {
+        String lineaVella = ultimaLinea;
+        if (!acabat) {
+            ultimaLinea = buffer.readLine();
+            if (ultimaLinea == null) {
+                entrada.close();
+                acabat = true;
+            }
+
         }
         return lineaVella;
-        
+
     }
-  
-    
+
 }
