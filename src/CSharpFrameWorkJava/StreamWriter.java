@@ -28,12 +28,16 @@ public class StreamWriter {
         isClosed=false;
     }
 
-    public void Write(String line) {
+    public void Write(String line) throws Exception {
+        if(isClosed)
+            throw Exception("The file is closed!!");
         stkLines.Push(line);
 
     }
 
-    public void WriteLine(String line,String enter="\n\r") {
+    public void WriteLine(String line,String enter="\n\r") throws Exception {
+        if(isClosed)
+            throw Exception("The file is closed!!");
         stkLines.Push(line);
         stkLines.Push(enter);
     }
