@@ -12,12 +12,13 @@ public class Clip implements ClipboardOwner {
     // M�todo que recupera una cadena del portapapeles.
     public String getClipboard() {
         // Obtenemos el contenido del portapapeles del sistema.
+        String text=null;
         Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null);
         try {
             // Comprobamos que la informaci�n sea de tipo cadena, lo recuperamos y lo devolvemos.
             if (t != null && t.isDataFlavorSupported(DataFlavor.stringFlavor)) {
-                String text = (String) t.getTransferData(DataFlavor.stringFlavor);
-                return text;
+                text = (String) t.getTransferData(DataFlavor.stringFlavor);
+
             }
         } catch (UnsupportedFlavorException e) {
             e.printStackTrace();
@@ -25,7 +26,7 @@ public class Clip implements ClipboardOwner {
             e.printStackTrace();
         }
         // Si lo copiado no es un texto, devolvemos null
-        return null;
+        return text;
     }
 
     // M�todo que inserta en el portapapeles una cadena.
