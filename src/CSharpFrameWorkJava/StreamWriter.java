@@ -38,7 +38,7 @@ public class StreamWriter {
         stkLines.Push(enter);
     }
 
-    public void Close(String enter="\n\r") {
+    public void Close() {
         String linea;
         StringBuilder strText;
         if(!isClosed){
@@ -49,7 +49,6 @@ public class StreamWriter {
                 if(linea !=null)
                 {
                     strText.append(linea);
-                    strText.append(enter);
                 }
             }
             while (linea != null);
