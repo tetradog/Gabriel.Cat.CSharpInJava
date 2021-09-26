@@ -20,33 +20,44 @@ import java.util.Iterator;
 public class StreamWriter {
 
     PrintWriter fitxer;
-    Stack<String> txt = null;
-
+    Stack<String> stkLines;
+    boolean isClosed;
     public StreamWriter(String pathArxiu) throws IOException {
         fitxer = crearArchivo(pathArxiu);
-        txt = new Stack<String>();
-
+        stkLines = new Stack<String>();
+        isClosed=false;
     }
 
     public void Write(String line) {
-        txt.Push(line);
+        stkLines.Push(line);
 
     }
 
-    public void WriteLine(String line) {
-        txt.Push(line);
-        txt.Push("\n\r");
+    public void WriteLine(String line,String enter="\n\r") {
+        stkLines.Push(line);
+        stkLines.Push(enter);
     }
 
-    public void Close() {
-        String text = "";
-        String linea = "";
-        while (linea != null) {
-            text += linea;
-            linea = txt.ToString();
+    public void Close(String enter="\n\r") {
+        String linea;
+        StringBuilder strText;
+        if(!isClosed){
+            strText= new StringBuilder();
+        
+            do{
+                linea = stkLines.Pop();
+                if(linea !=null)
+                {
+                    strText.append(linea);
+                    strText.append(enter);
+                }
+            }
+            while (linea != null);
+
+            fitxer.append(strText.toString());
+            fitxer.close();
+            isClosed=true;
         }
-        fitxer.append(text);
-        fitxer.close();
     }
 
     private PrintWriter crearArchivo(String path) throws IOException {
